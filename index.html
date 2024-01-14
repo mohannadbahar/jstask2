@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<form class="registerForm" onsubmit="convertCurrency(event)">
+    <label>Amount</label>
+    <input type="text" name="amount" id="amount" />
+    
+    <label>Currency</label>
+    <select name="exchange" id="exchange">
+        <option value="USD">US Dollar</option>
+        <option value="JD">Jordanian Dinar </option>
+        <option value="NIS">Shekel</option>
+    </select>
+    
+    <p class="result"></p>
+    
+    <input type="submit" value="Convert" />
+</form>
+
+<script>
+    function convertCurrency(event) {
+        event.preventDefault();
+
+       
+        const amount = parseFloat(document.getElementById('amount').value);
+        const selectedCurrency = document.getElementById('exchange').value;
+
+        
+        let result;
+        switch (selectedCurrency) {
+            case 'USD':
+                result = amount * 0.30; 
+                break;
+            case 'JD':
+                result = amount * 0.19; 
+                break;
+            case 'NIS':
+                result = amount; 
+                break;
+            default:
+                result = 'Invalid currency';
+        }
+
+        
+        const resultElement = document.querySelector('.result');
+        resultElement.textContent = `Equivalent value: ${result.toFixed(2)} ${selectedCurrency}`;
+    }
+</script>
+
+</body>
+</html>
